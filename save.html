@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Successful</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #2ebf91;
+        color: #fff;
+      }
+
+      .container {
+        text-align: center;
+      }
+
+      .countdown {
+        font-size: 40px;
+        margin: 20px;
+      }
+
+      .message {
+        font-size: 24px;
+        margin-top: 20px;
+      }
+
+      footer {
+        margin-top: 20px;
+        font-size: 14px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <h1 class="message">Your followers can take at least 20h!</h1>
+      <div id="countdown" class="countdown"></div>
+      <footer>&copy; 2025 Free Followers | All Rights Reserved</footer>
+    </div>
+
+    <script>
+      // Set countdown time (20 hours from now)
+      let countdownTime = 20 * 60 * 60 * 1000; // 20 hours in milliseconds
+      let endTime = new Date().getTime() + countdownTime;
+
+      function updateCountdown() {
+        let now = new Date().getTime();
+        let timeLeft = endTime - now;
+
+        if (timeLeft <= 0) {
+          document.getElementById("countdown").innerHTML = "Time's up!";
+        } else {
+          let hours = Math.floor(timeLeft / (1000 * 60 * 60));
+          let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+          let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+          document.getElementById("countdown").innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+        }
+      }
+
+      setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
