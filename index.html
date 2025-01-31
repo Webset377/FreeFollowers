@@ -1,207 +1,131 @@
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type"></meta>
-    <title>Login Form</title>
+<<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 Stylish Music Player</title>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f3f3f3;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-      .menu {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        cursor: pointer;
-        z-index: 1000;
-      }
+        .player-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
 
-      .menu span {
-        display: block;
-        width: 30px;
-        height: 3px;
-        margin: 5px 0;
-        background-color: #333;
-        border-radius: 2px;
-      }
+        h2 {
+            color: #ff5733;
+        }
 
-      .settings {
-        position: absolute;
-        top: 50px;
-        left: 10px;
-        background-color: #ffffff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        padding: 10px;
-        display: none;
-      }
+        .cover {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 10px auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            animation: spin 5s linear infinite;
+        }
 
-      .settings a {
-        display: block;
-        padding: 10px;
-        color: #007bff;
-        text-decoration: none;
-        border-bottom: 1px solid #eee;
-      }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-      .settings a:last-child {
-        border-bottom: none;
-      }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            position: relative;
+        }
 
-      .settings a:hover {
-        background-color: #f3f3f3;
-      }
+        .progress {
+            height: 8px;
+            width: 0%;
+            background: #ff5733;
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
 
-      .form-container {
-        text-align: center;
-        padding: 20px;
-        background-color: #ffffff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        max-width: 400px;
-        width: 100%;
-      }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
 
-      .input-field {
-        display: block;
-        width: 100%;
-        max-width: 300px;
-        margin: 10px auto;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-      }
+        button {
+            background: #ff5733;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 16px;
+            transition: 0.3s;
+        }
 
-      .password-toggle {
-        position: relative;
-      }
-
-      .toggle-btn {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-        font-size: 14px;
-        color: #007bff;
-      }
-
-      .submit-button {
-        display: block;
-        width: 100%;
-        max-width: 320px;
-        margin: 15px auto;
-        padding: 10px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      .submit-button:hover {
-        background-color: #0056b3;
-      }
+        button:hover {
+            background: #e63e00;
+        }
     </style>
-  </head>
-  <body>
-    <!-- Three-line menu -->
-    <div class="menu" onclick="toggleSettings()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+</head>
+<body>
 
-    <!-- Settings dropdown -->
-    <div class="settings" id="settingsMenu">
-      <a href="#">Profile</a>
-      <a href="#">Change Password</a>
-      <a href="#">Logout</a>
-    </div>
+    <div class="player-container">
+        <h2>🎶 म्यूजिक प्लेयर</h2>
+        <img src="https://cdn-icons-png.flaticon.com/512/726/726380.png" alt="Album Cover" class="cover">
+        <audio id="audio" ontimeupdate="updateProgress()">
+            <source src="your-music-file.mp3" type="audio/mp3">
+            आपका ब्राउज़र ऑडियो को सपोर्ट नहीं करता।
+        </audio>
 
-    <div class="form-container">
-      <form id="loginForm">
-        <input class="input-field" id="username" placeholder="Enter your Username" type="text" />
-        <div class="password-toggle">
-          <input class="input-field" id="password" placeholder="Enter your Password" type="password" />
-          <span class="toggle-btn" onclick="togglePassword()">Show</span>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
         </div>
-        <button class="submit-button" type="submit">Login</button>
-      </form>
+
+        <div class="controls">
+            <button onclick="playAudio()">▶</button>
+            <button onclick="pauseAudio()">⏸</button>
+            <button onclick="stopAudio()">⏹</button>
+        </div>
     </div>
 
-    <script type="module">
-      // Import Firebase SDK
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-      import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+    <script>
+        var audio = document.getElementById("audio");
+        var progress = document.getElementById("progress");
 
-      // Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyD2eitt5iTwBaTx8CWeuuPeyD7nTa58XD8",
-        authDomain: "freefollowers-d31af.firebaseapp.com",
-        databaseURL: "https://freefollowers-d31af-default-rtdb.firebaseio.com",
-        projectId: "freefollowers-d31af",
-        storageBucket: "freefollowers-d31af.appspot.com",
-        messagingSenderId: "807949104285",
-        appId: "1:807949104285:web:2c0238cdc7913dad279074",
-        measurementId: "G-ME1GQ5KV8H",
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const db = getDatabase(app);
-
-      // Function to write user data
-      function writeUserData(userID, username, password) {
-        set(ref(db, "users/" + userID), {
-          username: username,
-          password: password,
-        });
-      }
-
-      // Handle form submission
-      document.getElementById("loginForm").addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent form submission
-
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const userID = new Date().getTime(); // Example: Use timestamp as a unique ID
-
-        if (username && password) {
-          writeUserData(userID, username, password);
-          alert("Your Account is Unexpected! Please try again later!");
-        } else {
-          alert("Please fill in both fields.");
+        function playAudio() {
+            audio.play();
         }
-      });
 
-      // Toggle settings menu visibility
-      function toggleSettings() {
-        const menu = document.getElementById("settingsMenu");
-        menu.style.display = menu.style.display === "block" ? "none" : "block";
-      }
-
-      // Toggle password visibility
-      function togglePassword() {
-        const passwordField = document.getElementById("password");
-        const toggleBtn = passwordField.nextElementSibling;
-        if (passwordField.type === "password") {
-          passwordField.type = "text";
-          toggleBtn.textContent = "Hide";
-        } else {
-          passwordField.type = "password";
-          toggleBtn.textContent = "Show";
+        function pauseAudio() {
+            audio.pause();
         }
-      }
+
+        function stopAudio() {
+            audio.pause();
+            audio.currentTime = 0;
+            progress.style.width = "0%";
+        }
+
+        function updateProgress() {
+            var percentage = (audio.currentTime / audio.duration) * 100;
+            progress.style.width = percentage + "%";
+        }
     </script>
-  </body>
-</html>
+
+</body>
+  </html>
